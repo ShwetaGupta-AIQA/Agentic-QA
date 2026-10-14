@@ -1,0 +1,9 @@
+{
+  "dataset": "design_benchmark-demo-v1",
+  "mode": "demo",
+  "sample_count": 3,
+  "passed": 3,
+  "schema_valid_output_percent": 100.0,
+  "scope": "Three synthetic demo examples. Label coverage matches candidate titles only; it is not semantic acceptance validation, live model accuracy or execution coverage.",
+  "results": []
+}

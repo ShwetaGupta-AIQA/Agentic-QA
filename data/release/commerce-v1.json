@@ -1,0 +1,67 @@
+{
+  "version": "commerce-v1",
+  "project": "commerce",
+  "coverage_definition": "Canonical mapped requirements with complete non-skipped test execution; execution coverage is not semantic completeness or passing behavior.",
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "suite_ids": [
+        "ECOM-001"
+      ]
+    },
+    {
+      "requirement_id": "REQ-002",
+      "suite_ids": [
+        "ECOM-002"
+      ]
+    },
+    {
+      "requirement_id": "REQ-003",
+      "suite_ids": [
+        "ECOM-003"
+      ]
+    },
+    {
+      "requirement_id": "REQ-004",
+      "suite_ids": [
+        "ECOM-004"
+      ]
+    },
+    {
+      "requirement_id": "REQ-005",
+      "suite_ids": [
+        "ECOM-005"
+      ]
+    },
+    {
+      "requirement_id": "REQ-006",
+      "suite_ids": [
+        "ECOM-006"
+      ]
+    },
+    {
+      "requirement_id": "REQ-007",
+      "suite_ids": [
+        "ECOM-007"
+      ]
+    },
+    {
+      "requirement_id": "REQ-008",
+      "suite_ids": [
+        "ECOM-008"
+      ]
+    },
+    {
+      "requirement_id": "REQ-009",
+      "suite_ids": [
+        "ECOM-009"
+      ]
+    },
+    {
+      "requirement_id": "REQ-010",
+      "suite_ids": [
+        "ECOM-010"
+      ]
+    }
+  ]
+}

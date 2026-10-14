@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-13",
+  "python_scan": "failed",
+  "python_advisory_entries": 5,
+  "affected": [
+    {
+      "package": "chromadb",
+      "version": "1.5.9",
+      "advisories": [
+        "PYSEC-2026-311",
+        "PYSEC-2026-3813",
+        "PYSEC-2026-3814",
+        "PYSEC-2026-3815"
+      ],
+      "published_fix_versions": []
+    }
+  ],
+  "npm_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "production_security_gate": "BLOCKED",
+  "suppressed_advisories": [],
+  "scope": "Dependency audit only; not an image OS scan or penetration test"
+}

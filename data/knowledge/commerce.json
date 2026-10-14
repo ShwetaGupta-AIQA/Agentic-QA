@@ -1,0 +1,252 @@
+[
+  {
+    "id": "REQ-001",
+    "title": "Add available product to shopping cart",
+    "text": "Available product quantity must be positive and not exceed stock. Add notebook P1 to shopping cart.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-001",
+    "test_id": "ECOM-001"
+  },
+  {
+    "id": "TEST-ECOM-001",
+    "title": "Add available product to cart",
+    "text": "Add available product to shopping cart. Available product quantity must be positive and not exceed stock. Add notebook P1 to shopping cart. Registered automation ECOM-001.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-001",
+    "test_id": "ECOM-001"
+  },
+  {
+    "id": "REQ-002",
+    "title": "Remove product from shopping cart",
+    "text": "Remove a cart product line and clear coupon when the basket becomes empty.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-002",
+    "test_id": "ECOM-002"
+  },
+  {
+    "id": "TEST-ECOM-002",
+    "title": "Remove product from cart",
+    "text": "Remove product from shopping cart. Remove a cart product line and clear coupon when the basket becomes empty. Registered automation ECOM-002.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-002",
+    "test_id": "ECOM-002"
+  },
+  {
+    "id": "REQ-003",
+    "title": "Valid coupon discount calculation",
+    "text": "SAVE10 coupon applies 10 percent discount to eligible cart subtotal, rounded half up. 1000 becomes 900 payable total.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-003",
+    "test_id": "ECOM-003"
+  },
+  {
+    "id": "TEST-ECOM-003",
+    "title": "Apply valid ten-percent coupon",
+    "text": "Valid coupon discount calculation. SAVE10 coupon applies 10 percent discount to eligible cart subtotal, rounded half up. 1000 becomes 900 payable total. Registered automation ECOM-003.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-003",
+    "test_id": "ECOM-003"
+  },
+  {
+    "id": "REQ-004",
+    "title": "Invalid coupon validation",
+    "text": "Unknown coupon code returns 400 Invalid coupon and must not change the payable total.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-004",
+    "test_id": "ECOM-004"
+  },
+  {
+    "id": "TEST-ECOM-004",
+    "title": "Reject invalid coupon",
+    "text": "Invalid coupon validation. Unknown coupon code returns 400 Invalid coupon and must not change the payable total. Registered automation ECOM-004.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-004",
+    "test_id": "ECOM-004"
+  },
+  {
+    "id": "REQ-005",
+    "title": "Coupon expiry UTC boundary",
+    "text": "SAVE10 coupon expiry is exclusive at midnight UTC 2030-01-02; reject expired coupons exactly at expiry.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-005",
+    "test_id": "ECOM-005"
+  },
+  {
+    "id": "TEST-ECOM-005",
+    "title": "Reject expired coupon",
+    "text": "Coupon expiry UTC boundary. SAVE10 coupon expiry is exclusive at midnight UTC 2030-01-02; reject expired coupons exactly at expiry. Registered automation ECOM-005.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-005",
+    "test_id": "ECOM-005"
+  },
+  {
+    "id": "REQ-006",
+    "title": "Coupon reuse redemption history",
+    "text": "Coupon can be redeemed once per customer. Consume redemption on checkout; second use returns 409.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-006",
+    "test_id": "ECOM-006"
+  },
+  {
+    "id": "TEST-ECOM-006",
+    "title": "Reject coupon reuse",
+    "text": "Coupon reuse redemption history. Coupon can be redeemed once per customer. Consume redemption on checkout; second use returns 409. Registered automation ECOM-006.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-006",
+    "test_id": "ECOM-006"
+  },
+  {
+    "id": "REQ-007",
+    "title": "Decimal discount rounding",
+    "text": "Coupon discount calculation for 300 subtotal is 30 discount and 270 payable total; use decimal rounding half up.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-007",
+    "test_id": "ECOM-007"
+  },
+  {
+    "id": "TEST-ECOM-007",
+    "title": "Verify discount calculation",
+    "text": "Decimal discount rounding. Coupon discount calculation for 300 subtotal is 30 discount and 270 payable total; use decimal rounding half up. Registered automation ECOM-007.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-007",
+    "test_id": "ECOM-007"
+  },
+  {
+    "id": "REQ-008",
+    "title": "Stock quantity limit",
+    "text": "Adding cart quantity above inventory stock returns 409 without changing cart; notebook stock is five.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-008",
+    "test_id": "ECOM-008"
+  },
+  {
+    "id": "TEST-ECOM-008",
+    "title": "Reject quantity above stock",
+    "text": "Stock quantity limit. Adding cart quantity above inventory stock returns 409 without changing cart; notebook stock is five. Registered automation ECOM-008.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-008",
+    "test_id": "ECOM-008"
+  },
+  {
+    "id": "REQ-009",
+    "title": "Checkout order integration",
+    "text": "Checkout creates order, decrements product stock, consumes coupon and clears cart.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-009",
+    "test_id": "ECOM-009"
+  },
+  {
+    "id": "TEST-ECOM-009",
+    "title": "Complete checkout",
+    "text": "Checkout order integration. Checkout creates order, decrements product stock, consumes coupon and clears cart. Registered automation ECOM-009.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-009",
+    "test_id": "ECOM-009"
+  },
+  {
+    "id": "REQ-010",
+    "title": "Empty cart checkout rejection",
+    "text": "Empty shopping cart checkout returns 400 Empty cart with no order created.",
+    "kind": "requirement",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-010",
+    "test_id": "ECOM-010"
+  },
+  {
+    "id": "TEST-ECOM-010",
+    "title": "Reject empty checkout",
+    "text": "Empty cart checkout rejection. Empty shopping cart checkout returns 400 Empty cart with no order created. Registered automation ECOM-010.",
+    "kind": "test",
+    "source_version": "commerce-v1",
+    "requirement_id": "REQ-010",
+    "test_id": "ECOM-010"
+  },
+  {
+    "id": "BUG-001",
+    "title": "Coupon expiry timezone mismatch",
+    "text": "Synthetic historical defect example, not an observed current incident: Coupon expiry timezone mismatch. Investigate corresponding rules; historical similarity does not establish root cause.",
+    "kind": "defect",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "HISTORY-LOG-001",
+    "title": "Coupon expiry timezone mismatch log",
+    "text": "Synthetic historical execution log example: assertion mismatch for Coupon expiry timezone mismatch. Reproduce and confirm the actual product behavior.",
+    "kind": "log",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "BUG-002",
+    "title": "Coupon discount filtered subtotal",
+    "text": "Synthetic historical defect example, not an observed current incident: Coupon discount filtered subtotal. Investigate corresponding rules; historical similarity does not establish root cause.",
+    "kind": "defect",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "HISTORY-LOG-002",
+    "title": "Coupon discount filtered subtotal log",
+    "text": "Synthetic historical execution log example: assertion mismatch for Coupon discount filtered subtotal. Reproduce and confirm the actual product behavior.",
+    "kind": "log",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "BUG-003",
+    "title": "Coupon reuse history not persisted",
+    "text": "Synthetic historical defect example, not an observed current incident: Coupon reuse history not persisted. Investigate corresponding rules; historical similarity does not establish root cause.",
+    "kind": "defect",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "HISTORY-LOG-003",
+    "title": "Coupon reuse history not persisted log",
+    "text": "Synthetic historical execution log example: assertion mismatch for Coupon reuse history not persisted. Reproduce and confirm the actual product behavior.",
+    "kind": "log",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "BUG-004",
+    "title": "Cart stock quantity race",
+    "text": "Synthetic historical defect example, not an observed current incident: Cart stock quantity race. Investigate corresponding rules; historical similarity does not establish root cause.",
+    "kind": "defect",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "HISTORY-LOG-004",
+    "title": "Cart stock quantity race log",
+    "text": "Synthetic historical execution log example: assertion mismatch for Cart stock quantity race. Reproduce and confirm the actual product behavior.",
+    "kind": "log",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "BUG-005",
+    "title": "Checkout empty-cart validation missing",
+    "text": "Synthetic historical defect example, not an observed current incident: Checkout empty-cart validation missing. Investigate corresponding rules; historical similarity does not establish root cause.",
+    "kind": "defect",
+    "source_version": "history-demo-v1"
+  },
+  {
+    "id": "HISTORY-LOG-005",
+    "title": "Checkout empty-cart validation missing log",
+    "text": "Synthetic historical execution log example: assertion mismatch for Checkout empty-cart validation missing. Reproduce and confirm the actual product behavior.",
+    "kind": "log",
+    "source_version": "history-demo-v1"
+  }
+]

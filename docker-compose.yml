@@ -1,0 +1,104 @@
+name: agentic-qa-demo
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: qa
+      POSTGRES_DB: qa
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    networks: [data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U qa -d qa"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  chroma:
+    image: chromadb/chroma:1.5.9
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - 'exec 3<>/dev/tcp/127.0.0.1/8000; printf "GET /api/v2/heartbeat HTTP/1.0\r\n\r\n" >&3; read -r status <&3; [[ "$$status" == *"200"* ]]'
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    volumes: [chroma_data:/data]
+    networks: [data]
+    restart: unless-stopped
+  backend:
+    build: {context: ., dockerfile: backend/Dockerfile, target: api}
+    environment:
+      QA_DEPLOYMENT_MODE: controlled
+      QA_EXECUTION_MODE: queue
+      QA_DB_HOST: postgres
+      QA_DB_PASSWORD_FILE: /run/secrets/db_password
+      QA_API_TOKEN_FILE: /run/secrets/api_token
+      QA_RELEASE_REVIEW_TOKEN_FILE: /run/secrets/reviewer_token
+      QA_RELEASE_REVIEWER: local-reviewer
+      QA_CHROMA_HOST: chroma
+      QA_MODEL_MODE: demo
+      QA_EMBEDDING_MODE: demo
+      LANGSMITH_TRACING: "false"
+    secrets: [db_password, api_token, reviewer_token]
+    volumes: [artifacts:/app/reports]
+    networks: [edge, data]
+    depends_on:
+      postgres: {condition: service_healthy}
+      chroma: {condition: service_healthy}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 1536m
+    restart: unless-stopped
+  worker:
+    build: {context: ., dockerfile: backend/Dockerfile, target: worker}
+    environment:
+      QA_EXECUTION_MODE: queue
+      QA_DB_HOST: postgres
+      QA_DB_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes: [artifacts:/app/reports]
+    networks: [data]
+    depends_on:
+      postgres: {condition: service_healthy}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    shm_size: 256m
+    mem_limit: 1536m
+    cpus: 2
+    pids_limit: 256
+    init: true
+    stop_grace_period: 210s
+    restart: unless-stopped
+  frontend:
+    build: {context: ., dockerfile: frontend/Dockerfile}
+    ports: ["127.0.0.1:8080:8080"]
+    secrets: [api_token, demo_htpasswd]
+    networks: [edge]
+    depends_on:
+      backend: {condition: service_healthy}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 256m
+    restart: unless-stopped
+networks:
+  edge: {}
+  data: {internal: true}
+volumes:
+  postgres_data: {}
+  chroma_data: {}
+  artifacts: {}
+secrets:
+  db_password: {file: .secrets/db_password}
+  api_token: {file: .secrets/api_token}
+  reviewer_token: {file: .secrets/reviewer_token}
+  demo_htpasswd: {file: .secrets/demo_htpasswd}

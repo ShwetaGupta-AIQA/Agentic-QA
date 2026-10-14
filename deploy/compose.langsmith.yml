@@ -1,0 +1,12 @@
+# Optional sanitized metadata export; no raw LangGraph tracing.
+services:
+  backend:
+    environment:
+      QA_LANGSMITH_ENABLED: "true"
+      LANGSMITH_TRACING: "false"
+      LANGSMITH_API_KEY_FILE: /run/secrets/langsmith_api_key
+      LANGSMITH_PROJECT: agentic-qa-metadata
+    secrets: [langsmith_api_key]
+secrets:
+  langsmith_api_key:
+    file: .secrets/langsmith_api_key

@@ -1,0 +1,39 @@
+name: Agentic QA CI
+on: [push, pull_request]
+permissions: {contents: read}
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r backend/requirements.lock.txt
+      - run: python -m pytest -q
+        working-directory: backend
+        env: {QA_MODEL_MODE: demo, QA_EMBEDDING_MODE: demo, LANGSMITH_TRACING: 'false'}
+      - run: python -m app.evaluate_release
+        working-directory: backend
+      - run: pip install pip-audit && pip-audit -r backend/requirements.lock.txt
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
+      - run: npm ci && npm test && npm run build && npm audit --audit-level=high
+        working-directory: frontend
+  container-integration:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install bcrypt
+      - run: python scripts/setup_demo.py
+      - run: docker compose config --quiet && docker compose up -d --build --wait --wait-timeout 180
+      - run: python scripts/smoke.py --base-url http://127.0.0.1:8080 --restart
+      - if: always()
+        run: docker compose down

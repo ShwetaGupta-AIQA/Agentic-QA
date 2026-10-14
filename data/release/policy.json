@@ -1,0 +1,12 @@
+{
+  "version": "local-commerce-policy-v1",
+  "pass_rate_min": 95,
+  "coverage_min": 90,
+  "critical_open_max": 0,
+  "high_open_max": 5,
+  "skipped_percent_max": 2,
+  "blocked_max": 0,
+  "freshness_hours": 24,
+  "risk_score_max": 30,
+  "future_clock_tolerance_minutes": 5
+}

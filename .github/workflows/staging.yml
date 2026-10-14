@@ -1,0 +1,31 @@
+name: Approved controlled staging
+on: {workflow_dispatch: {}}
+permissions: {contents: read, actions: read, checks: read}
+jobs:
+  protection:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require configured staging reviewers
+        env: {GH_TOKEN: '${{ github.token }}', REPO: '${{ github.repository }}', SHA: '${{ github.sha }}'}
+        run: |
+          gh api "repos/$REPO/commits/$SHA/check-runs" > checks.json
+          jq -e '[.check_runs[] | select(.conclusion == "success") | .name] as $ok | (["backend", "frontend", "container-integration"] - $ok | length) == 0' checks.json
+          gh api "repos/$REPO/environments/staging" > environment.json
+          jq -e '[.protection_rules[] | select(.type == "required_reviewers") | .reviewers[]] | length > 0' environment.json
+  deploy:
+    needs: protection
+    environment: staging
+    runs-on: [self-hosted, linux, qa-staging]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {clean: false}
+      - name: Build controlled demo
+        run: |
+          test -f .secrets/demo_htpasswd
+          test -f .secrets/db_password
+          docker compose config --quiet
+          docker compose up -d --build --wait --wait-timeout 180
+      - name: Verify staged application
+        run: python scripts/smoke.py --base-url http://127.0.0.1:8080 --restart

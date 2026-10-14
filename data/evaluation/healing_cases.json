@@ -1,0 +1,183 @@
+[
+  {
+    "id": "testid-and-role",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": true
+  },
+  {
+    "id": "changed-testid",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-discount",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": true
+  },
+  {
+    "id": "role-only",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": null,
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": true
+  },
+  {
+    "id": "other-buttons",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      },
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Checkout",
+        "testid": "checkout",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": true
+  },
+  {
+    "id": "assertion",
+    "category": "product_assertion",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": false
+  },
+  {
+    "id": "timeout",
+    "category": "timeout",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": false
+  },
+  {
+    "id": "environment",
+    "category": "infrastructure_error",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": false
+  },
+  {
+    "id": "data",
+    "category": "data_failure",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": false
+  },
+  {
+    "id": "ambiguous",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      },
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": false
+  },
+  {
+    "id": "disabled",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Apply coupon",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": false
+      }
+    ],
+    "eligible": false
+  },
+  {
+    "id": "wrong-semantics",
+    "category": "locator_not_found",
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "role": "button",
+        "name": "Checkout",
+        "testid": "apply-coupon",
+        "visible": true,
+        "enabled": true
+      }
+    ],
+    "eligible": false
+  }
+]

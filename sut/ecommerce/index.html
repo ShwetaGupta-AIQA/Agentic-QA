@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Synthetic Commerce</title>
+<style>body{font-family:system-ui;background:#0b1220;color:#f1f5f9;max-width:850px;margin:auto;padding:32px}section{padding:20px;margin:20px 0;border:1px solid #344760;border-radius:12px}button,input{font:inherit;padding:10px;margin:5px;border-radius:6px}button{background:#2563eb;color:white;border:0}input{max-width:200px}#message{padding:15px;background:#182338}h1{color:#93c5fd}</style>
+<h1>Synthetic Commerce</h1><p>Local resettable QA system under test. All data is synthetic.</p>
+<section><h2>Products</h2><div id="products" data-testid="products"></div></section>
+<section><h2>Cart</h2><div id="items" data-testid="cart-items"></div><p>Subtotal: <span data-testid="subtotal" id="subtotal">0.00</span></p><p>Discount: <span data-testid="discount" id="discount">0.00</span></p><p>Payable: <span data-testid="payable" id="payable">0.00</span></p><label>Coupon <input id="coupon" data-testid="coupon-input"></label><button data-testid="apply-coupon" onclick="applyCoupon()">Apply coupon</button><button data-testid="checkout" onclick="checkout()">Checkout</button></section>
+<p role="status" id="message" data-testid="message">Ready</p>
+<script>
+const el=id=>document.getElementById(id);
+async function call(path,method='GET',body){const r=await fetch(path,{method,headers:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});const data=await r.json();if(!r.ok)throw new Error(data.detail);return data;}
+async function refresh(){const c=await call('/cart');el('items').replaceChildren();for(const item of c.items){const row=document.createElement('div');row.textContent=item.product_id+' × '+item.quantity+' ';const b=document.createElement('button');b.textContent='Remove';b.dataset.testid='remove-'+item.product_id;b.onclick=()=>action(()=>call('/cart/'+item.product_id,'DELETE'),'Product removed');row.append(b);el('items').append(row);}for(const id of ['subtotal','discount','payable'])el(id).textContent=c[id];}
+async function action(fn,message){try{await fn();await refresh();el('message').textContent=message;}catch(e){el('message').textContent=e.message;}}
+async function applyCoupon(){await action(()=>call('/coupon','POST',{code:el('coupon').value}),'Coupon applied');}
+async function checkout(){try{const order=await call('/checkout','POST');await refresh();el('message').textContent='Order '+order.id+' confirmed';}catch(e){el('message').textContent=e.message;}}
+async function start(){const products=await call('/products');for(const p of products){const row=document.createElement('div');row.textContent=p.name+' / '+p.price+' / Stock '+p.stock+' ';const b=document.createElement('button');b.dataset.testid='add-'+p.id;b.textContent='Add to cart';b.onclick=()=>action(()=>call('/cart','POST',{product_id:p.id,quantity:1}),'Product added');row.append(b);el('products').append(row);}await refresh();}start().catch(e=>el('message').textContent=e.message);
+</script></html>

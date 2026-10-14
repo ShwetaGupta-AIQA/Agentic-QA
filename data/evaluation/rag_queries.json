@@ -1,0 +1,100 @@
+[
+  {
+    "id": "Q-001",
+    "query": "Add available product to shopping cart",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-001"
+    ]
+  },
+  {
+    "id": "Q-002",
+    "query": "Remove product from shopping cart",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-002"
+    ]
+  },
+  {
+    "id": "Q-003",
+    "query": "Valid coupon discount calculation",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-003"
+    ]
+  },
+  {
+    "id": "Q-004",
+    "query": "Invalid coupon validation",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-004"
+    ]
+  },
+  {
+    "id": "Q-005",
+    "query": "Coupon expiry UTC boundary",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-005"
+    ]
+  },
+  {
+    "id": "Q-006",
+    "query": "Coupon reuse redemption history",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-006"
+    ]
+  },
+  {
+    "id": "Q-007",
+    "query": "Decimal discount rounding",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-007"
+    ]
+  },
+  {
+    "id": "Q-008",
+    "query": "Stock quantity limit",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-008"
+    ]
+  },
+  {
+    "id": "Q-009",
+    "query": "Checkout order integration",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-009"
+    ]
+  },
+  {
+    "id": "Q-010",
+    "query": "Empty cart checkout rejection",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-010"
+    ]
+  },
+  {
+    "id": "Q-011",
+    "query": "basket inventory stock quantity",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-001",
+      "TEST-ECOM-008"
+    ]
+  },
+  {
+    "id": "Q-012",
+    "query": "voucher payable discount percentage",
+    "kind": "test",
+    "relevant_ids": [
+      "TEST-ECOM-003",
+      "TEST-ECOM-007"
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+import {useState} from 'react';
+import * as api from '../services/intelligenceApi';
+import SourceList from '../components/SourceList';
+export default function RegressionImpact(){
+ const [change,setChange]=useState('Coupon discount increased from 10 percent to 15 percent');const [result,setResult]=useState<api.Impact|null>(null);const [busy,setBusy]=useState(false);const [error,setError]=useState('');
+ return <><h1>Regression Impact Analysis</h1><p className="muted">Potentially affected tests, ranked from retrieved knowledge. Review before selecting automation.</p><form className="card" onSubmit={async e=>{e.preventDefault();setBusy(true);setError('');setResult(null);try{setResult(await api.impact(change));}catch(e){setError(e instanceof Error?e.message:'Impact failed');}finally{setBusy(false);}}}><label>Changed requirement<textarea required minLength={3} value={change} onChange={e=>{setChange(e.target.value);setResult(null);}}/></label><button disabled={busy||change.trim().length<3}>Analyze regression impact</button></form>{error&&<p role="alert">{error}</p>}{result&&<><p>{result.impacted_tests.length} potentially impacted tests / {result.embedding_mode} mode</p><p>{result.note}</p>{result.impacted_tests.map(item=><article className="card" key={item.test_id}><h2>{item.test_id}: {item.title}</h2><p>{item.priority} / Needs review / {item.registered_automation?'Registered automation':'Candidate test'}</p><p>{item.reason}</p><p>Citations: {item.citation_ids.join(', ')}</p></article>)}<SourceList sources={result.sources}/></>}</>;
+}

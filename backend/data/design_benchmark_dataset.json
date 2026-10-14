@@ -1,0 +1,60 @@
+[
+  {
+    "id": "coupon-10",
+    "requirement": "As a customer, I want to apply a coupon during checkout. A valid coupon gives a 10% discount, can be used once per customer, expires at midnight UTC, and cannot reduce the payable total below 0.",
+    "minimum_cases": 8,
+    "labels": {
+      "discount": [
+        "verify discount"
+      ],
+      "expiry": [
+        "just before expiry",
+        "exactly at expiry"
+      ],
+      "reuse": [
+        "second use"
+      ],
+      "floor": [
+        "below zero"
+      ]
+    }
+  },
+  {
+    "id": "coupon-decimal",
+    "requirement": "A coupon gives a 12.5% discount during checkout. It expires at midnight UTC, is used once per customer, and cannot reduce the total below 0.",
+    "minimum_cases": 8,
+    "labels": {
+      "discount": [
+        "verify discount"
+      ],
+      "expiry": [
+        "exactly at expiry"
+      ],
+      "reuse": [
+        "second use"
+      ],
+      "floor": [
+        "below zero"
+      ]
+    }
+  },
+  {
+    "id": "shopping-cart",
+    "requirement": "Add and remove products in a shopping cart and reject quantity exceeding stock.",
+    "minimum_cases": 5,
+    "labels": {
+      "add": [
+        "add item"
+      ],
+      "remove": [
+        "remove item"
+      ],
+      "stock": [
+        "above stock"
+      ],
+      "total": [
+        "cart total"
+      ]
+    }
+  }
+]

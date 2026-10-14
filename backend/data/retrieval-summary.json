@@ -1,0 +1,10 @@
+{
+  "dataset": "commerce-rag-v1",
+  "embedding_mode": "demo",
+  "queries": 12,
+  "mean_recall_at_5": 1.0,
+  "mean_precision_at_5": 0.23333333333333336,
+  "source_reference_percent": 100.0,
+  "scope": "12 synthetic labeled queries in a small checked-in corpus, deterministic hashed lexical/synonym embeddings. Not learned semantic model quality or production generalization. Precision denominator is five, including empty slots.",
+  "results": []
+}
